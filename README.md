@@ -1,1 +1,1 @@
-Jaa 8 project for Streams= and Collector.
+Java 8 project for Streams and Collector.

@@ -94,6 +94,10 @@ public class Streamer {
 		return num % 2 == 0;
 	}
 	
+	private static Predicate<Integer> buildGreaterThanPredicate(int pivot) {
+		return e -> isGreaterThan(e, pivot);
+	}
+	
 	private static boolean isGreaterThan(int num, int pivot) {
 		System.out.println("Comparing if "+ num +" > "+ pivot);
 		return num > pivot;
@@ -132,8 +136,10 @@ public class Streamer {
 		startTime = System.currentTimeMillis();
 		Integer retValue = null;
 		
+		final Predicate<Integer> greatedThanPred = buildGreaterThanPredicate(pivot);
+		
 		Stream<Integer> intStream = intList.stream();
-		intStream.filter(e -> isGreaterThan(e, pivot))
+		intStream.filter(greatedThanPred)
 				 .filter(Streamer :: isEven)
 				 .map(Streamer :: doubleIt)
 				 .findFirst();
